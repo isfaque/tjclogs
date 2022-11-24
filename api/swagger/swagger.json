@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "title": "TJC Logs API",
+    "description": "TJC Logs API documentation",
+    "version": "1.0.0",
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data",
+        "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "in": "query",
+            "name": "api_key"
+        }
+    },
+    "security": [
+        {
+            "JWT": []
+        }
+    ],
+    "responses": {
+        "UnauthorizedError": {
+            "description": "Access token is missing or invalid"
+        }
+    },
+    "paths": {
+        "/log/getLogs": {
+            "get": {
+                "tags": [
+                    "Log Module"
+                ],
+                "summary": "Logs",
+                "description": "Logs",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#definitions/appResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#definitions/errorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "_comment": "Complex objects have schema definitions",
+    "definitions": {
+        "appResponse": {
+            "required": "message",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "number"
+                }
+            }
+        },
+        "errorResponse": {
+            "required": "message",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

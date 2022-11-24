@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TJC Logs API",
+    "version": "v1"
+  },
+  "security": [
+    {
+      "bearerAuth": {}
+    }
+  ],
+  "paths": {
+    "/api/log/getLogs": {
+      "post": {
+        "x-controller-name": "LogController",
+        "x-operation-name": "log",
+        "summary": "get logs",
+        "tags": ["Log"],
+        "requestBody": {
+          "description": "Get Logs",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#definitions/appResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#definitions/errorResponse"
+            }
+          }
+        },
+        "operationId": "UserController.login"
+      }
+    }
+  },
+  "definitions": {
+    "appResponse": {
+      "required": "message",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "number"
+        }
+      }
+    },
+    "errorResponse": {
+      "required": "message",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
