@@ -18,7 +18,7 @@ global.__rootRequire = function (relpath) {
 };
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV == undefined) {
-  process.env.NODE_ENV = "local";
+  process.env.NODE_ENV = "prod";
 }
 
 const config = require("./api/config/config.js").get(process.env.NODE_ENV);
