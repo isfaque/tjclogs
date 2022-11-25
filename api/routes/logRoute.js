@@ -3,7 +3,7 @@ module.exports = function (router) {
     var utils = require("../utils/middleware");
     var middlewares = [utils.CheckUrl];
     router.get("/log/get", log.getLogs);
-    router.post("/log/middleware/add", log.addMiddlewareLog);
+    router.post("/log/middleware/error/add", log.addMiddlewareErrorLog);
 
 
     return router;
