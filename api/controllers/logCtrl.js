@@ -8,6 +8,7 @@ var mongoose = require("mongoose"),
   mresponse = require("../utils/responseHandler"),
   validator = require("../utils/validator"),
   MW_DW_ERROR = mongoose.model("mwdwerror"),
+  MW_DW_SUCCESS = mongoose.model("mwdwsuccess"),
 
   Config = require("../config/config").get(process.env.NODE_ENV),
   commonQuery = require("../utils/commonQuery");
@@ -16,7 +17,9 @@ var mongoose = require("mongoose"),
 
 module.exports = {
   getLogs: getLogs,
-  addMiddlewareErrorLog: addMiddlewareErrorLog
+  addMiddlewareErrorLog: addMiddlewareErrorLog,
+  addMiddlewareSuccessLog: addMiddlewareSuccessLog
+
 };
 
 
@@ -47,4 +50,24 @@ module.exports = {
 
     }
     asyCreate();
+}
+
+function addMiddlewareSuccessLog(req, res) {
+  async function asyCreate() {
+
+      try {
+
+              let data = {
+                  data: req.body.data
+              }
+              let requestData = await commonQuery.InsertIntoCollection(MW_DW_SUCCESS, data);
+
+              return mresponse(res, Constant.SUCCESS_CODE, Constant.DATA_SAVE_SUCCESS, requestData);
+          
+      } catch (err) {
+          return mresponse(res, Constant.ERROR_CODE, err);
+      };
+
+  }
+  asyCreate();
 }

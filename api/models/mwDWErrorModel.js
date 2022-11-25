@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-var mwDWErrorsModel = new mongoose.Schema({
+var mwDWErrorModel = new mongoose.Schema({
 
 
     data: {
@@ -13,4 +13,4 @@ var mwDWErrorsModel = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('mwdwerror', mwDWErrorsModel);
+module.exports = mongoose.model('mwdwerror', mwDWErrorModel);

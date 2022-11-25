@@ -2,7 +2,9 @@
 var mongoose = require("mongoose");
 
 //All models schema test
-__rootRequire("api/models/logModel");
+__rootRequire("api/models/mwDWErrorModel");
+__rootRequire("api/models/mwDWSuccessModel");
+
 
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV == undefined) {
