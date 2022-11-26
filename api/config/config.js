@@ -24,9 +24,9 @@ const config = {
 
     },
     prod: {
-        host: '176.34.101.228:',
-        port: 3000,
-        baseUrl: 'http://176.34.101.228:3000/',
+        host: 'middleware-log.tjc.co.uk:',
+        port: 443,
+        baseUrl: 'http://middleware-log.tjc.co.uk:443/',
         DATABASE: {
             dbname: 'tjclogs',
             host: 'mongodb://127.0.0.1:',
