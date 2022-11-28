@@ -3,15 +3,24 @@ var express = require("express");
 const cors = require("cors");
 var path = require("path");
 var logger = require("morgan");
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./api/swagger/swagger.json");
+var privateKey  = fs.readFileSync(__dirname+'/ssl/wildcard_tjc_co_uk.key', 'utf8');
+var certificate = fs.readFileSync(__dirname+'/ssl/wildcard_tjc_co_uk.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 // const swaggerDocument = require("./api/swagger/swagger.json");
 
 // require('custom-env').env('local')
 
 var app = express();
 app.use(cors());
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
 global.__rootRequire = function (relpath) {
   return require(path.join(__dirname, relpath));
@@ -97,7 +106,9 @@ app.use(function (err, req, res, next) {
 
 // start server
 var port = process.env.NODE_ENV.PORT || config.port;
-var server = app.listen(port);
+var server = httpsServer.listen(port, function(){
+  console.log("Server is running")
+});
 
 module.exports = app;
 
