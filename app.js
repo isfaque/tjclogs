@@ -108,7 +108,7 @@ app.use(function (err, req, res, next) {
 
 // start server
 var port = process.env.NODE_ENV.PORT || config.port;
-var server = httpServer.listen(port, function(){
+var server = httpsServer.listen(port, function(){
   console.log("Server is running")
 });
 
