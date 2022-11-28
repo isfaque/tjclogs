@@ -12,6 +12,7 @@ const swaggerDocument = require("./api/swagger/swagger.json");
 var privateKey  = fs.readFileSync(__dirname+'/ssl/wildcard_tjc_co_uk.key', 'utf8');
 var certificate = fs.readFileSync(__dirname+'/ssl/wildcard_tjc_co_uk.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
+https.globalAgent.options.ca = fs.readFileSync('node_modules/node_extra_ca_certs_mozilla_bundle/ca_bundle/ca_intermediate_root_bundle.pem');
 // const swaggerDocument = require("./api/swagger/swagger.json");
 
 // require('custom-env').env('local')
