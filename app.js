@@ -19,6 +19,8 @@ var credentials = {key: privateKey, cert: certificate};
 var app = express();
 app.use(cors());
 
+console.log(__dirname+'/ssl/wildcard_tjc_co_uk.key')
+
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
@@ -106,7 +108,7 @@ app.use(function (err, req, res, next) {
 
 // start server
 var port = process.env.NODE_ENV.PORT || config.port;
-var server = httpsServer.listen(port, function(){
+var server = httpServer.listen(port, function(){
   console.log("Server is running")
 });
 
