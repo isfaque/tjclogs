@@ -62,7 +62,7 @@ function removeMiddlewareErrorLog(req, res) {
       try {
 
               let data = {
-                  createdAt: {$lte: new Date(req.body.date)}
+                timestamps: {$lte: new Date(req.body.date)}
               }
               let requestData = await commonQuery.deleteManyfromCollection(MW_DW_ERROR, data);
 
