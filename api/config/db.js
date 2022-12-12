@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 //All models schema test
 __rootRequire("api/models/mwDWErrorModel");
 __rootRequire("api/models/mwDWSuccessModel");
+__rootRequire("api/models/exceptionModel");
 
 
 
