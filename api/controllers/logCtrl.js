@@ -62,7 +62,7 @@ function removeMiddlewareErrorLog(req, res) {
       try {
 
               let data = {
-                timestamps: {$lte: new Date(req.body.date)}
+                timestamps: {$lte: new Date((new Date().getTime() - (120 * 60 * 60 * 1000)))}
               }
               let requestData = await commonQuery.deleteManyfromCollection(MW_DW_ERROR, data);
 
@@ -70,7 +70,7 @@ function removeMiddlewareErrorLog(req, res) {
           
       } catch (err) {
           return mresponse(res, Constant.ERROR_CODE, err);
-      };
+      }
 
   }
   asyCreate();

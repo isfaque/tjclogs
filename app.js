@@ -6,6 +6,7 @@ var logger = require("morgan");
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
+var cron = require('node-cron');
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./api/swagger/swagger.json");
@@ -16,6 +17,7 @@ https.globalAgent.options.ca = fs.readFileSync('node_modules/node_extra_ca_certs
 // const swaggerDocument = require("./api/swagger/swagger.json");
 
 // require('custom-env').env('local')
+
 
 var app = express();
 app.use(cors());
@@ -105,6 +107,10 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.send("error");
+});
+
+cron.schedule('00 00 04 * * 0-6', () => {
+  console.log('running a task every two minutes');
 });
 
 // start server
